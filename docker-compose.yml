@@ -341,7 +341,7 @@ services:
         networks:
             meet.jitsi:
                 aliases:
-                    - ${XMPP_SERVER:-xmpp.meet.jitsi}
+                    - ${XMPP_SERVER:-prosody}
 
     # Focus component
     jicofo:
