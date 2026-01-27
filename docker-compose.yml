@@ -443,7 +443,7 @@ services:
     # Video bridge
     jvb:
         image: jitsi/jvb:${JITSI_IMAGE_VERSION:-unstable}
-        container_name:jvb
+        container_name: jvb
         restart: ${RESTART_POLICY:-unless-stopped}
         ports:
             - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
