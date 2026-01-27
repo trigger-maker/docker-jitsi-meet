@@ -193,6 +193,7 @@ services:
     # XMPP server
     prosody:
         image: jitsi/prosody:${JITSI_IMAGE_VERSION:-unstable}
+        container_name: prosody
         restart: ${RESTART_POLICY:-unless-stopped}
         expose:
             - '${XMPP_PORT:-5222}'
