@@ -510,6 +510,7 @@ services:
     image: jitsi/jibri:stable
     container_name: jitsi-jibri
     restart: unless-stopped
+    privileged: true
     volumes:
       - ${CONFIG}/jibri:/config:Z
       - jitsi-recordings:/recordings:rw
@@ -521,23 +522,27 @@ services:
       - /dev/snd:/dev/snd
     depends_on:
       - jicofo
+      - web
     environment:
       - XMPP_AUTH_DOMAIN=auth.meet.jitsi
       - XMPP_INTERNAL_MUC_DOMAIN=internal-muc.meet.jitsi
       - XMPP_RECORDER_DOMAIN=recorder.meet.jitsi
       - XMPP_SERVER=xmpp.meet.jitsi
+      - XMPP_DOMAIN=meet.jitsi
       - JIBRI_BREWERY_MUC=jibribrewery
       - JIBRI_PENDING_TIMEOUT=90
       - JIBRI_RECORDING_DIR=/recordings
       - JIBRI_FINALIZE_RECORDING_SCRIPT_PATH=/config/finalize.sh
-      - JIBRI_XMPP_USER=${JIBRI_XMPP_USER:-jibri}
+      - JIBRI_XMPP_USER=jibri
       - JIBRI_XMPP_PASSWORD=${JIBRI_XMPP_PASSWORD}
-      - JIBRI_RECORDER_USER=${JIBRI_RECORDER_USER:-recorder}
+      - JIBRI_RECORDER_USER=recorder
       - JIBRI_RECORDER_PASSWORD=${JIBRI_RECORDER_PASSWORD}
       - PUBLIC_URL=${PUBLIC_URL}
       - ENABLE_STATS_D=false
+      - CHROMIUM_FLAGS=--use-fake-ui-for-media-stream --use-fake-device-for-media-stream --disable-dev-shm-usage
+      - DISPLAY=:0
     networks:
-      - meet.jitsi
+      meet.jitsi:
 
 volumes:
   jitsi-recordings:
