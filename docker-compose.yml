@@ -532,7 +532,7 @@ services:
             - XMPP_AUTH_DOMAIN=auth.meet.jitsi
             - XMPP_INTERNAL_MUC_DOMAIN=internal-muc.meet.jitsi
             - XMPP_RECORDER_DOMAIN=recorder.meet.jitsi
-            - XMPP_SERVER=xmpp.meet.jitsi
+            - XMPP_SERVER=${XMPP_SERVER:-prosody}
             - XMPP_DOMAIN=meet.jitsi
             - JIBRI_BREWERY_MUC=jibribrewery
             - JIBRI_PENDING_TIMEOUT=90
